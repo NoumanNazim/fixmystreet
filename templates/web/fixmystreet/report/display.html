@@ -24,6 +24,12 @@
     <p class='form-success'>[% loc('You have successfully signed in; please check and confirm your details are accurate:') %]</p>
 [% END %]
 
+[% IF created_report %]
+    <div id="ms_srv_wrapper" style="display:none">
+        <p><a href="https://www.surveygizmo.co.uk/s3/1907419/FMS-2014" id="ms_srv_link" data-transaction="report">We&rsquo;re running a short survey to help us understand how well FixMyStreet works. If you&rsquo;d like to take it, click here.</a></p>
+    </div>
+[% END %]
+
 [% INCLUDE 'report/banner.html' %]
 
 [% INCLUDE 'report/_main.html' %]
