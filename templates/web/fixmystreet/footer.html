@@ -38,9 +38,7 @@
 <!-- [% INCLUDE 'debug_footer.html' %] -->
     </div> <!-- .wrapper -->
 
-    [% IF c.cobrand.moniker == 'fixmystreet' %]
-        [% INCLUDE 'footer-research-js.html' %]
-    [% END %]
+    [% TRY %][% PROCESS 'footer_extra.html' %][% CATCH file %][% END %]
 
 </body>
 </html>
