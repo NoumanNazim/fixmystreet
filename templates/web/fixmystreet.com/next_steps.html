@@ -1,8 +1,15 @@
 [%# A trio of suggested steps, shown on completion pages across FMS.com %]
 
+[% DEFAULT share_url = c.cobrand.base_url %]
+[% DEFAULT twitter_comment = 'I just used @fixmystreet, you should try it!' %]
+
 <div class="next-steps">
   <div class="next-steps__step next-steps__step--apps">
-    <h2>[% loc('Next time, try our mobile app!') %]</h2>
+    [% IF just_interacted %]
+      <h2>[% loc('Next time, try our mobile app!') %]</h2>
+    [% ELSE %]
+      <h2>[% loc('Have you tried our mobile app?') %]</h2>
+    [% END %]
     <p>[% loc('Download it now, and and it’ll be ready to use when you next pick up your phone.') %]</p>
     <p class="next-steps__step__cta">
       <a href="https://itunes.apple.com/gb/app/fixmystreet/id297456545"><img src="/cobrands/fixmystreet/images/next-step-apple.png" alt="Download on the App Store" width="120" height="37"></a>
@@ -10,11 +17,16 @@
     </p>
   </div>
   <div class="next-steps__step next-steps__step--social">
-    <h2>[% loc('Great work. Now spread the word!') %]</h2>
-    <p>[% loc('Share your report on Twitter and Facebook, and let your friends join the conversation.') %]</p>
+    [% IF just_interacted %]
+      <h2>[% loc('Great work. Now spread the word!') %]</h2>
+      <p>[% loc('Share your report on Twitter and Facebook, and let your friends join the conversation.') %]</p>
+    [% ELSE %]
+      <h2>[% loc('Spread the word about FixMyStreet!') %]</h2>
+      <p>[% loc('You know how to get things fixed - now make sure your friends do too.') %]</p>
+    [% END %]
     <p class="next-steps__step__cta">
-      <a href="https://twitter.com/home?status=I+just+reported+an+issue+on+@fixmystreet+https://fixmystreet.com"><img src="/cobrands/fixmystreet/images/next-step-twitter.png" alt="Tweet it" width="120" height="37"></a>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=https://fixmystreet.com"><img src="/cobrands/fixmystreet/images/next-step-facebook.png" alt="Share on Facebook" width="120" height="37"></a>
+      <a href="https://twitter.com/home?status=[% twitter_comment _ ' ' _ share_url | uri %]"><img src="/cobrands/fixmystreet/images/next-step-twitter.png" alt="Tweet it" width="120" height="37"></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=[% share_url | uri %]"><img src="/cobrands/fixmystreet/images/next-step-facebook.png" alt="Share on Facebook" width="120" height="37"></a>
     </p>
   </div>
   <div class="next-steps__step next-steps__step--goodies">
