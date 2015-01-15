@@ -54,3 +54,60 @@
     margin-top: 0.5em;
   }
 }
+
+.next-steps {
+  margin: 0 -1em; // counteract padding on parent
+  background-color: #faf7e2;
+}
+
+.next-steps__step {
+  box-sizing: border-box;
+  padding: 1em;
+
+  & + .next-steps__step {
+    border-top: 1px solid #ede8c9;
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+
+  p {
+    color: #666666;
+    margin-bottom: 0;
+  }
+}
+
+.next-steps__step__cta {
+  @include pie-clearfix;
+  padding-top: 0.4em; // extra padding between buttons and previous paragraph
+
+  a {
+    float: left;
+    margin: 1em 0.6em 0 0;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .next-steps__step--goodies {
+    min-height: 37px; // stop absolutely positioned img overlapping bottom of parent element
+
+    img {
+      // absolute positioning to overlap floated goodies image to the right
+      position: absolute;
+      max-width: none;
+    }
+  }
+}
+
+.next-steps__step--goodies {
+  @include pie-clearfix;
+
+  .goodies-preview {
+    float: right;
+    margin-left: 1em;
+    margin-right: -0.5em;
+  }
+}
