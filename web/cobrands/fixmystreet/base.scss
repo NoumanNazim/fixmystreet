@@ -70,6 +70,10 @@
   & > :last-child {
     margin-bottom: 0;
   }
+
+  &.confirmation-header--failure {
+    background-image: url(/cobrands/fixmystreet/images/sad-face-in-circle-100px.png);
+  }
 }
 
 .next-steps {
