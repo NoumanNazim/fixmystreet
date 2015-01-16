@@ -6,7 +6,7 @@
 
   [% IF c.cobrand.is_council %]
     <h2>[% loc('Your issue is on its way to the council.') %]</h2>
-    <p>[% loc('Your reference for this problem is %s, please quote it in any enquiries.', problem.id) %]</p>
+    <p>[% tprintf( loc('Your reference for this problem is %s, please quote it in any enquiries.'), problem.id ) %]</p>
 
   [% ELSE %]
     <h2>[% loc('Thank you for reporting this issue!') %]</h2>
