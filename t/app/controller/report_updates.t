@@ -387,7 +387,7 @@ for my $test (
         is $add_alerts, $details->{add_alert} ? 1 : 0, 'do not sign up for alerts';
 
         $mech->get_ok( $url . $url_token );
-        $mech->content_contains("/report/$report_id#update_$update_id");
+        $mech->content_contains("Thank you for updating this issue");
 
         my $unreg_user = FixMyStreet::App->model( 'DB::User' )->find( { email => $details->{rznvy} } );
 
@@ -1032,7 +1032,7 @@ subtest 'submit an update for a registered user, creating update by email' => su
     is $update->text, 'Update from a user', 'update text';
 
     $mech->get_ok( $url . $url_token );
-    $mech->content_contains("/report/$report_id#update_$update_id");
+    $mech->content_contains("Thank you for updating this issue");
 
     # User should have new name and password
     $user->discard_changes;
@@ -1393,7 +1393,7 @@ foreach my $test (
 
             $mech->submit_form_ok( { with_fields => { reported => 'Yes' } } );
 
-            $mech->content_contains( 'Thank you &mdash; you can' );
+            $mech->content_contains( 'Thank you for updating this issue' );
 
             $questionnaire = FixMyStreet::App->model( 'DB::Questionnaire' )->find(
                 { problem_id => $report_id }
@@ -1452,7 +1452,7 @@ for my $test (
         anonymous => 0,
         answered  => 1,
         path    => '/report/update',
-        content => "You have successfully confirmed your update",
+        content => "Thank you for updating this issue",
     },
   )
 {
@@ -1542,7 +1542,7 @@ for my $test (
 
             $mech->submit_form_ok( { with_fields => { reported => 'Yes' } } );
 
-            $mech->content_contains( 'Thank you &mdash; you can' );
+            $mech->content_contains( 'Thank you for updating this issue' );
 
             $questionnaire = FixMyStreet::App->model( 'DB::Questionnaire' )->find(
                 { problem_id => $report_id }
