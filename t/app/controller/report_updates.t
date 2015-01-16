@@ -387,7 +387,7 @@ for my $test (
         is $add_alerts, $details->{add_alert} ? 1 : 0, 'do not sign up for alerts';
 
         $mech->get_ok( $url . $url_token );
-        $mech->content_contains("Thank you for updating this issue");
+        $mech->content_contains("/report/$report_id#update_$update_id");
 
         my $unreg_user = FixMyStreet::App->model( 'DB::User' )->find( { email => $details->{rznvy} } );
 
@@ -1032,7 +1032,7 @@ subtest 'submit an update for a registered user, creating update by email' => su
     is $update->text, 'Update from a user', 'update text';
 
     $mech->get_ok( $url . $url_token );
-    $mech->content_contains("Thank you for updating this issue");
+    $mech->content_contains("/report/$report_id#update_$update_id");
 
     # User should have new name and password
     $user->discard_changes;

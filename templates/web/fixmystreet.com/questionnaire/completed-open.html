@@ -1,6 +1,4 @@
-[% IF c.cobrand.is_council %]
-    <p>Thank you very much for filling in our questionnaire.</p>
-[% ELSE %]
+[% IF ! c.cobrand.is_council %]
     <h2>We’re sorry to hear that your problem hasn’t been fixed.</h2>
 
     <p>
@@ -15,7 +13,7 @@
     </p>
 
     <p>
-    You can do this on <a href="https://www.writetothem.com/">writetothem.com</a>, another
+    You can do this on <a href="https://www.writetothem.com/">WriteToThem</a>, another
     useful mySociety website.
     </p>
 [% END %]

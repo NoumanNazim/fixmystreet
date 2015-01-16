@@ -5,8 +5,8 @@
   <h1><a href="[% c.cobrand.base_url_for_report( problem ) %][% problem.url %]">[% problem.title %]</a></h1>
 
   [% IF c.cobrand.is_council %]
-    <h2>[% loc('Your issue is on its way to the council.') %]</h2>
-    <p>[% tprintf( loc('Your reference for this problem is %s, please quote it in any enquiries.'), problem.id ) %]</p>
+    <h2>Your issue is on its way to the council.</h2>
+    <p>Your reference for this problem is [% problem.id %], please quote it in any enquiries.</p>
 
   [% ELSE %]
     <h2>[% loc('Thank you for reporting this issue!') %]</h2>

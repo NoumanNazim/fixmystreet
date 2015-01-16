@@ -33,43 +33,8 @@
 }
 
 .confirmation-header {
-  padding: 2em 0;
   padding-top: 140px;
-  text-align: center;
   background: transparent url(/cobrands/fixmystreet/images/tick-in-circle-100px.png) center 1em no-repeat;
-
-  h1, h2 {
-    margin: 0;
-    line-height: 1.2em;
-  }
-
-  h1 {
-    a {
-      text-decoration: underline;
-      color: inherit;
-
-      &:hover,
-      &:focus {
-        text-decoration: none;
-        color: #0BA7D1; // the same as default links in ../sass/_base.scss
-      }
-    }
-  }
-
-  h1 + h2,
-  h1 + p {
-    margin-top: 12px;
-  }
-
-  p {
-    color: #666666;
-    font-size: 1.2em;
-    margin-bottom: 0.5em;
-  }
-
-  & > :last-child {
-    margin-bottom: 0;
-  }
 
   &.confirmation-header--failure {
     background-image: url(/cobrands/fixmystreet/images/sad-face-in-circle-100px.png);
