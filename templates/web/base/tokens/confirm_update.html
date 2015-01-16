@@ -14,11 +14,11 @@
 
 </div>
 
-[% TRY %][% INCLUDE
+[% INCLUDE
   next_steps.html,
   just_interacted = 1,
   share_url = c.cobrand.base_url_for_report(update.problem) _ update.problem.url,
   twitter_comment = loc('I just updated a problem on @fixmystreet')
-%][% CATCH file %][% END %]
+%]
 
 [% INCLUDE 'footer.html' %]
