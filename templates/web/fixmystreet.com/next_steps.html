@@ -25,7 +25,7 @@
       <p>[% loc('You know how to get things fixed - now make sure your friends do too.') %]</p>
     [% END %]
     <p class="next-steps__step__cta">
-      <a href="https://twitter.com/home?status=[% twitter_comment _ ' ' _ share_url | uri %]"><img src="/cobrands/fixmystreet/images/next-step-twitter.png" alt="Tweet it" width="120" height="37"></a>
+      <a href="https://twitter.com/intent/tweet?text=[% twitter_comment | uri %]&amp;url=[% share_url | uri %]&amp;related=fixmystreet,mysociety"><img src="/cobrands/fixmystreet/images/next-step-twitter.png" alt="Tweet it" width="120" height="37"></a>
       <a href="https://www.facebook.com/sharer/sharer.php?u=[% share_url | uri %]"><img src="/cobrands/fixmystreet/images/next-step-facebook.png" alt="Share on Facebook" width="120" height="37"></a>
     </p>
   </div>
