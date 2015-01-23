@@ -7,11 +7,7 @@
 package FixMyStreet::Geocode::Bing;
 
 use strict;
-use Encode;
-use File::Slurp;
-use File::Path ();
 use LWP::Simple;
-use Digest::MD5 qw(md5_hex);
 
 use mySociety::Locale;
 
@@ -34,24 +30,10 @@ sub string {
     $url .= '&userLocation=' . $params->{centre} if $params->{centre};
     $url .= '&c=' . $params->{bing_culture} if $params->{bing_culture};
 
-    my $cache_dir = FixMyStreet->config('GEO_CACHE') . 'bing/';
-    my $cache_file = $cache_dir . md5_hex($url);
-    my $js;
-    if (-s $cache_file) {
-        $js = File::Slurp::read_file($cache_file);
-    } else {
-        $url .= '&key=' . FixMyStreet->config('BING_MAPS_API_KEY');
-        $js = LWP::Simple::get($url);
-        $js = encode_utf8($js) if utf8::is_utf8($js);
-        File::Path::mkpath($cache_dir);
-        File::Slurp::write_file($cache_file, $js) if $js;
-    }
-
+    my $js = FixMyStreet::Geocode::cache('bing', $url, 'key=' . FixMyStreet->config('BING_MAPS_API_KEY'));
     if (!$js) {
         return { error => _('Sorry, we could not parse that location. Please try again.') };
     }
-
-    $js = JSON->new->utf8->allow_nonref->decode($js);
     if ($js->{statusCode} ne '200') {
         return { error => _('Sorry, we could not find that location.') };
     }
@@ -97,24 +79,12 @@ sub reverse {
         $url .= '&c=' . $bing_culture if $bing_culture;
         my $j;
         if ( $cache ) {
-            my $cache_dir = FixMyStreet->config('GEO_CACHE') . 'bing/';
-            my $cache_file = $cache_dir . md5_hex($url);
-
-            if (-s $cache_file) {
-                $j = File::Slurp::read_file($cache_file);
-            } else {
-                $j = LWP::Simple::get($url);
-                File::Path::mkpath($cache_dir);
-                File::Slurp::write_file($cache_file, $j) if $j;
-            }
+            $j = FixMyStreet::Geocode::cache('bing', $url);
         } else {
             $j = LWP::Simple::get($url);
+            $j = JSON->new->utf8->allow_nonref->decode($j) if $j;
         }
-
-        if ($j) {
-            $j = JSON->new->utf8->allow_nonref->decode($j);
-            return $j;
-        }
+        return $j if $j;
     }
 
     return undef;
